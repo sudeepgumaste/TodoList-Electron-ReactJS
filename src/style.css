@@ -1,0 +1,25 @@
+*, *::before, *::after{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*:focus{
+  outline: none;
+}
+
+
+@font-face {
+  font-family: 'Poppins Regular';
+  src: url('./assets/fonts/Poppins-Regular.ttf')
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url('./assets/fonts/Poppins-Bold.ttf')
+}
+
+@font-face {
+  font-family: 'Poppins Medium';
+  src: url('./assets/fonts/Poppins-Medium.ttf')
+}
