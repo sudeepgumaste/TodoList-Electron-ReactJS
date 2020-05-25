@@ -9,14 +9,14 @@ const Container = styled.div`
   box-shadow: 4px 4px 20px rgba(0,0,0,0,2);
   font-family: 'Poppins Regular';
   font-size: '0.8rem';
-  /* box-shadow: 4px 4px 20px ${colors.lightestBlue}01; */
+  margin-bottom: 1rem;
+  color: ${colors.fontPrimary};
 `
 
-const Todo = ({children, ...props}) => {
-  
+const Todo = ({task}) => {
   return(
     <Container>
-      {children}
+      {task}
     </Container>
   )
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { v4 } from 'uuid';
 
 import colors from '../styleVariables/colors';
 
@@ -17,7 +16,7 @@ const Container = styled.div`
   }
 
   .category__form {
-    border-bottom: 1px solid ${colors.fontSecondary};
+    border-bottom: 1px solid ${colors.lightBlue};
     margin-bottom : 1rem;
     position: relative;
     display: flex;
@@ -30,8 +29,7 @@ const Container = styled.div`
       left: 0px;
       width: 100%;
       height: 2px;
-      background: ${colors.fontPrimary};
-      /* opacity : 0; */
+      background: ${colors.darkBlue};
       transform: scaleX(0);
       transform-origin: left;
       transition: transform ease 300ms, opacity ease 300ms;
@@ -51,7 +49,7 @@ const Container = styled.div`
       border: none;
 
       &:focus + .category__form__btn{
-        color: ${colors.fontPrimary};
+        color: ${colors.darkBlue};
       }
     }
 
@@ -60,7 +58,7 @@ const Container = styled.div`
       border: none;
       font-size: 2rem;
       margin: -0.5rem 0;
-      color: ${colors.fontSecondary};
+      color: ${colors.lightBlue};
       cursor: pointer;
       transition: color ease 300ms;
     }
@@ -112,27 +110,30 @@ const Container = styled.div`
       }
     }
   }
+  .category__list--alt{
+    font-size: 1rem;
+    color : ${colors.lightBlue};
+    text-align : center;
+    font-family : 'Poppins Regular';
+  }
 `;
 
-const dummyList = [
-  {
-    uuid: v4(),
-    name: 'Personal',
-  },
-];
 
-const Categories = () => {
-  const [list, setList] = useState([]);
+const Categories = ({ categories, selectedCategory, setSelectedCategory, ...props }) => {
   const [newList, setNewList] = useState('');
 
-  useEffect(() => {
-    setList(dummyList);
-  }, []);
+  const handleAddCategory = (e) => {
+    e.preventDefault();
+    if(newList){
+      props.handleAddCategory(newList);
+      setNewList(_=>'');
+    }
+  }
 
   return (
     <Container>
       <h2 className='category__heading'>LIST</h2>
-      <form className='category__form'>
+      <form className='category__form' onSubmit={handleAddCategory}>
         <input
           className='category__form__input'
           value={newList}
@@ -142,14 +143,13 @@ const Categories = () => {
         <button className='category__form__btn'>+</button>
       </form>
       <ul className='category__list'>
-        {list.map((item) => (
+        {categories?categories.map((item, index) => (
           <li key={item.uuid}>
-            <button className='category__list__btn selected'>{item.name}</button>
+            <button onClick={()=>setSelectedCategory(index)} className={`category__list__btn ${selectedCategory===index ? 'selected' : ''}`}>{item.name}</button>
           </li>
-        ))}
-        <li>
-          <button className='category__list__btn'>Academic</button>
-        </li>
+        )):
+        <p className='category__list--alt'>No categories added</p>
+      }
       </ul>
     </Container>
   );
