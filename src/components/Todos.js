@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 
 import styled from 'styled-components';
 import colors from '../styleVariables/colors';
+import Todo from './Todo';
 
 const Container = styled.div`
   flex:1;
@@ -22,6 +23,9 @@ const Todos = () => {
         <h1>
           {header}
         </h1>
+        <Todo>
+          Get a life
+        </Todo>
       </div>
     </Container>
   )

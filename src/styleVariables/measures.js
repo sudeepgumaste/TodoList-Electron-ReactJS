@@ -1,5 +1,5 @@
 const measures = {
-  interception: '3rem'
+  titleBarHeight: '2.2rem',
 }
 
 export default measures;
