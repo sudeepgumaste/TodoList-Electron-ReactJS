@@ -13,6 +13,22 @@ const Container = styled.div`
   color: ${colors.fontPrimary};
   font-family: 'Poppins Bold';
   overflow: auto;
+
+  ::-webkit-scrollbar{
+    height: 0.7rem;
+    width: 0.7rem;
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar-track{
+    cursor: pointer;
+    background: ${colors.lightBlue};
+  }
+
+  ::-webkit-scrollbar-thumb{
+    background: ${colors.darkBlue};
+  }
+
   .todos{
     min-width: 750px;
     padding: 0 5rem;

@@ -6,18 +6,33 @@ import colors from '../styleVariables/colors';
 const Container = styled.div`
   height: 100%;
   width: 280px;
-  padding: 2rem;
   background: ${colors.categoryBackgroundLight};
   color: ${colors.fontPrimary};
   font-family: 'Poppins Bold';
+  overflow-y: auto;
+
+  ::-webkit-scrollbar{
+    height: 0.7rem;
+    width: 0.7rem;
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar-track{
+    cursor: pointer;
+    background: ${colors.lightBlue};
+  }
+
+  ::-webkit-scrollbar-thumb{
+    background: ${colors.darkBlue};
+  }
 
   .category__heading {
-    margin-bottom: 2rem;
+    margin: 2rem;
   }
 
   .category__form {
     border-bottom: 1px solid ${colors.lightBlue};
-    margin-bottom : 1rem;
+    margin : 2rem;
     position: relative;
     display: flex;
     padding: 0.2rem;
@@ -67,8 +82,7 @@ const Container = styled.div`
   .category__list {
     list-style: none;
     font-size: 1.2rem;
-    width: 100%;
-
+    margin: 0 2rem;
     &__btn {
       padding: 0.5rem;
       color: ${colors.fontSecondary};
