@@ -16,6 +16,10 @@ const Container = styled.div`
   display: flex;
   align-items: center;
 
+  .task__text{
+    flex: 1;
+  }
+
   .task__remove{
     border:none;
     height: 2rem;
@@ -46,8 +50,9 @@ const Container = styled.div`
 const Todo = ({task, handleRemoveTodo}) => {
   return(
     <Container>
-      {task}
-
+      <div className="task__text">
+        {task}
+      </div>
       <button className="task__remove" onClick={ handleRemoveTodo }>
         <RemoveIcon/>
       </button>

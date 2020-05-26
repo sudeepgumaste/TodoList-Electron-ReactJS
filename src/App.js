@@ -24,13 +24,13 @@ const App = () => {
     'Personal': [
       {
         uuid: 'kjas-wrkl-dskd-sdkj',
-        task: 'Do some good shit'
+        task: 'Do some shit'
       }
     ],
     'Academic': [
       {
         uuid: 'kjqw-wrkl-dskd-sdkj',
-        task: 'Do some epic shit'
+        task: 'Do some other shit'
       }
     ],
     'Shopping': []

@@ -9,9 +9,9 @@ import { ReactComponent as UnMaximizeIcon } from '../assets/icons/unmaximise.svg
 import measures from '../styleVariables/measures';
 
 
-const electron = window.require('electron');
+// const electron = window.require('electron');
 
-const { ipcRenderer } = electron;
+// const { ipcRenderer } = electron;
 
 const Container = styled.div`
   position:absolute;
@@ -67,19 +67,19 @@ const PseudoTitleBar = () => {
   const [ zoom, setZoom ]  = useState(false);
 
   const handleClose = () => {
-    ipcRenderer.send('window:close');
+    // ipcRenderer.send('window:close');
   }
 
   const handleMinimize =() => {
-    ipcRenderer.send('window:minimize');
+    // ipcRenderer.send('window:minimize');
   }
 
   const handleMaximize =() => {
     console.log(zoom);
     if(zoom){
-      ipcRenderer.send('window:unmaximize');
+      // ipcRenderer.send('window:unmaximize');
     }else{
-      ipcRenderer.send('window:maximize');
+      // ipcRenderer.send('window:maximize');
     }
     setZoom(zoom=>!zoom);
   }
