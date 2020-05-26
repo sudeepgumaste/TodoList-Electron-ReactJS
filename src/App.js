@@ -20,27 +20,28 @@ const App = () => {
       name: 'Shopping'
     }
   ])
+
   const [todos, setTodos] = useState({
-    'Personal': [
+    'kjsd-fsdf-adsh-adjs': [
       {
         uuid: 'kjas-wrkl-dskd-sdkj',
         task: 'Do some shit'
       }
     ],
-    'Academic': [
+    'kjns-fsdf-adsh-adjs': [
       {
         uuid: 'kjqw-wrkl-dskd-sdkj',
         task: 'Do some other shit'
       }
     ],
-    'Shopping': []
+    'kjsd-adsk-adsh-adjs': []
   })
   const [selectedCategory, setSelectedCategory] = useState(0);
 
   const handleUpdateTodos = (updatedList) => {
     const updatedTodos = {
       ...todos,
-      [categories[selectedCategory].name] : updatedList
+      [categories[selectedCategory].uuid] : updatedList
     }
     setTodos(updatedTodos);
   }
@@ -59,6 +60,18 @@ const App = () => {
     }))
   }
 
+  const handleRemoveCategory = (uuid) => {
+    // console.log(uuid)
+    const updatedCategories = categories.filter(category=>category.uuid!==uuid);
+    const updatedTodos = {
+      ...todos
+    };
+    delete updatedTodos[uuid];
+
+    console.log(updatedCategories);
+    console.log(updatedTodos);
+  }
+
 
   useEffect(()=>{
     console.log(todos)
@@ -73,10 +86,11 @@ const App = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         setTodos={setTodos}
+        handleRemoveCategory={handleRemoveCategory}
       />
       <Todos 
         header={categories[selectedCategory].name} 
-        todos={todos[categories[selectedCategory].name]} 
+        todos={todos[categories[selectedCategory].uuid]} 
         setTodos={handleUpdateTodos} 
       />
     </Wrapper>

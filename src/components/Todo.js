@@ -10,7 +10,7 @@ const Container = styled.div`
   background: #fff;
   box-shadow: 4px 4px 20px rgba(0,0,0,0,2);
   font-family: 'Poppins Regular';
-  font-size: '0.8rem';
+  font-size: 0.9rem;
   margin-bottom: 1rem;
   color: ${colors.fontPrimary};
   display: flex;
@@ -20,8 +20,13 @@ const Container = styled.div`
     flex: 1;
   }
 
+  &:hover .task__remove{
+    opacity: 1;
+  }
+
   .task__remove{
     border:none;
+    opacity: 0;
     height: 2rem;
     width: 2rem;
     display: flex;
@@ -31,7 +36,7 @@ const Container = styled.div`
     border-radius: 0.3rem;
     cursor: pointer;
     background: none;
-    transition: background 300ms ease;
+    transition: background 300ms ease, opacity 300ms ease;
     
     svg{
       fill: ${colors.lightRed} !important;

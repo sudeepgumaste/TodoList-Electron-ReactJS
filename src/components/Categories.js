@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import colors from '../styleVariables/colors';
+
+import { ReactComponent as RemoveIcon } from '../assets/icons/removeFilled.svg';
 
 const Container = styled.div`
   height: 100%;
@@ -83,16 +85,51 @@ const Container = styled.div`
     font-size: 1.2rem;
     margin: 0 2rem;
     &__btn {
-      padding: 0.5rem;
+      /* padding: 0.7rem; */
       color: ${colors.fontSecondary};
       background: none;
       border: none;
+      font-size: 0.8rem;
       font-family: 'Poppins Medium';
       cursor: pointer;
       width: 100%;
       position: relative;
       transition: background ease 300ms;
-      
+      display: flex;
+      align-items: center;
+      /* border-radius: 0.5rem; */
+      margin-bottom: 0.5rem;
+
+      &__text{
+        margin-left: 0.7rem;
+        flex: 1;
+        text-align: left;
+      }
+
+      &__remove{
+        background:none;
+        border: none;
+        opacity: 0;
+        transition: opacity 300ms ease;
+        height: 1.5rem;
+        width: 1.5rem;
+        margin: 0.5rem;
+        cursor: pointer;
+
+        svg{
+          fill: ${colors.mediumRed} !important;
+          transition: fill 300ms ease;
+        }
+
+        &:hover svg{
+          fill: ${colors.darkRed} !important;
+        }
+      }
+
+      &:hover .category__list__btn__remove{
+        opacity: 1;
+      }
+
       &::before{
         content: '';
         position: absolute;
@@ -132,7 +169,13 @@ const Container = styled.div`
 `;
 
 
-const Categories = ({ categories, selectedCategory, setSelectedCategory, ...props }) => {
+const Categories = ({ 
+  categories, 
+  selectedCategory, 
+  setSelectedCategory, 
+  handleRemoveCategory, 
+  ...props 
+}) => {
   const [newList, setNewList] = useState('');
 
   const handleAddCategory = (e) => {
@@ -158,7 +201,17 @@ const Categories = ({ categories, selectedCategory, setSelectedCategory, ...prop
       <ul className='category__list'>
         {categories?categories.map((item, index) => (
           <li key={item.uuid}>
-            <button onClick={()=>setSelectedCategory(index)} className={`category__list__btn ${selectedCategory===index ? 'selected' : ''}`}>{item.name}</button>
+            <div 
+              onClick={()=>setSelectedCategory(index)} 
+              className={`category__list__btn ${selectedCategory===index ? 'selected' : ''}`}
+            >
+              <div className="category__list__btn__text">
+                {item.name}
+              </div>
+              <button className="category__list__btn__remove" onClick={()=>{handleRemoveCategory(item.uuid)}}>
+                <RemoveIcon/>
+              </button>
+            </div>
           </li>
         )):
         <p className='category__list--alt'>No categories added</p>
