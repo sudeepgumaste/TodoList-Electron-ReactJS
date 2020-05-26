@@ -60,7 +60,7 @@ const Container = styled.div`
           background: ${colors.darkBlue};
           /* opacity : 0; */
           transform: scaleX(0);
-          transform-origin: left;
+          /* transform-origin: left; */
           transition: transform ease 300ms, opacity ease 300ms;
         }
         
@@ -111,6 +111,11 @@ const Todos = ({header, todos, setTodos}) => {
     }
   }
 
+  const handleRemoveTodo = (uuid) => {
+    const updatedTodos = todos.filter((todo)=>todo.uuid !== uuid);
+    setTodos(updatedTodos);
+  }
+
   return (
     <Container>
       <div className="todos">
@@ -133,7 +138,7 @@ const Todos = ({header, todos, setTodos}) => {
         </div>
         {
           todos && todos.map(todo=>(
-            <Todo key={todo.uuid} task={todo.task}/>
+            <Todo key={todo.uuid} task={todo.task} handleRemoveTodo={()=>handleRemoveTodo(todo.uuid)} />
           ))
         }
 

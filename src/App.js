@@ -37,7 +37,7 @@ const App = () => {
   })
   const [selectedCategory, setSelectedCategory] = useState(0);
 
-  const handleAddTodo = (updatedList) => {
+  const handleUpdateTodos = (updatedList) => {
     const updatedTodos = {
       ...todos,
       [categories[selectedCategory].name] : updatedList
@@ -59,6 +59,7 @@ const App = () => {
     }))
   }
 
+
   useEffect(()=>{
     console.log(todos)
   }, [todos])
@@ -76,7 +77,7 @@ const App = () => {
       <Todos 
         header={categories[selectedCategory].name} 
         todos={todos[categories[selectedCategory].name]} 
-        setTodos={handleAddTodo} 
+        setTodos={handleUpdateTodos} 
       />
     </Wrapper>
   )

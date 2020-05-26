@@ -46,7 +46,6 @@ const Container = styled.div`
       height: 2px;
       background: ${colors.darkBlue};
       transform: scaleX(0);
-      transform-origin: left;
       transition: transform ease 300ms, opacity ease 300ms;
     }
     
