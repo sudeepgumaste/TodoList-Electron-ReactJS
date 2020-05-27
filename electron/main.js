@@ -5,6 +5,11 @@ const path = require('path');
 
 let mainWindow;
 
+// process.env.NODE_ENV = 'production';
+console.log(process.env.NODE_ENV);
+console.log(path.join(__dirname, '..','build','index.html'));
+
+
 app.on('ready',()=>{
   mainWindow = new BrowserWindow({
     frame: false,
@@ -17,7 +22,7 @@ app.on('ready',()=>{
   });
   mainWindow.loadURL(url.format({
     // pathname : path.join(__dirname, 'mainWindow.html'),
-    pathname : process.env.NODE_ENV==='production'?path.join(__dirname, '..','build','index.html'):'localhost:3000',
+    pathname : process.env.NODE_ENV==='production'?path.join(__dirname, '..','build','index.html'):'localhost:5000',
     protocol : process.env.NODE_ENV==='production'?'file:':'http:',
     slashes : true
   }));
