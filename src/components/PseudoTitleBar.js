@@ -11,6 +11,8 @@ import measures from '../styleVariables/measures';
 
 const electron = window.require('electron');
 
+// const electron = { ipcRenderer : { send: ()=>{}}}
+
 const { ipcRenderer } = electron;
 
 const Container = styled.div`

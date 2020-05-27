@@ -169,20 +169,20 @@ const Container = styled.div`
 `;
 
 
-const Categories = ({ 
-  categories, 
-  selectedCategory, 
-  setSelectedCategory, 
-  handleRemoveCategory, 
-  ...props 
+const Categories = ({
+  categories,
+  selectedCategory,
+  setSelectedCategory,
+  handleRemoveCategory,
+  ...props
 }) => {
   const [newList, setNewList] = useState('');
 
   const handleAddCategory = (e) => {
     e.preventDefault();
-    if(newList){
+    if (newList) {
       props.handleAddCategory(newList);
-      setNewList(_=>'');
+      setNewList(_ => '');
     }
   }
 
@@ -199,23 +199,30 @@ const Categories = ({
         <button className='category__form__btn'>+</button>
       </form>
       <ul className='category__list'>
-        {categories?categories.map((item, index) => (
+        {categories ? categories.map((item, index) => (
           <li key={item.uuid}>
-            <div 
-              onClick={()=>setSelectedCategory(index)} 
-              className={`category__list__btn ${selectedCategory===index ? 'selected' : ''}`}
+            <div
+              onClick={() => setSelectedCategory(index)}
+              className={`category__list__btn ${selectedCategory === index ? 'selected' : ''}`}
             >
               <div className="category__list__btn__text">
                 {item.name}
               </div>
-              <button className="category__list__btn__remove" onClick={()=>{handleRemoveCategory(item.uuid)}}>
-                <RemoveIcon/>
+              <button
+                style={{
+                  opacity: selectedCategory === index ? '' : '0',
+                  pointerEvents: selectedCategory === index ? 'all' : 'none'
+                }}
+                className="category__list__btn__remove"
+                onClick={() => { handleRemoveCategory(item.uuid) }}
+              >
+                <RemoveIcon />
               </button>
             </div>
           </li>
-        )):
-        <p className='category__list--alt'>No categories added</p>
-      }
+        )) :
+          <p className='category__list--alt'>No categories added</p>
+        }
       </ul>
     </Container>
   );

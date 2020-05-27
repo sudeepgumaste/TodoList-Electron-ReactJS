@@ -93,6 +93,17 @@ const Container = styled.div`
         }
       }
     }
+
+  }
+  .no-category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: ${colors.lightBlue};
+    font-family: 'Poppins Medium';
+    font-size: 2rem;
   }
 `
 
@@ -106,7 +117,11 @@ const Todos = ({header, todos, setTodos}) => {
         uuid: v4(),
         task: newTodo
       }
-      setTodos([todo, ...todos]);
+      if(todos){
+        setTodos([todo, ...todos]);
+      }else{
+        setTodos([todo]);
+      }
       setNewTodo(_=>'');
     }
   }
@@ -118,31 +133,42 @@ const Todos = ({header, todos, setTodos}) => {
 
   return (
     <Container>
-      <div className="todos">
-        <div className='todos__header'>
-          <h1>
-            {header}
-          </h1>
-        </div>
-        <div className='todos__form-container'>
-          <form className="todos__form" onSubmit={ handleAddTodo }>
-            <input
-              className='todos__form__input'
-              value={newTodo}
-              onChange={(e) => setNewTodo(e.target.value)}
-              type='text'
-              placeholder='Add task'
-            />
-            <button className='todos__form__btn'>+</button>
-          </form>
-        </div>
-        {
-          todos && todos.map(todo=>(
-            <Todo key={todo.uuid} task={todo.task} handleRemoveTodo={()=>handleRemoveTodo(todo.uuid)} />
-          ))
-        }
+      {
+        header ?
+        (
+          <div className="todos">
+            <div className='todos__header'>
+              <h1>
+                {header}
+              </h1>
+            </div>
+            <div className='todos__form-container'>
+              <form className="todos__form" onSubmit={ handleAddTodo }>
+                <input
+                  className='todos__form__input'
+                  value={newTodo}
+                  onChange={(e) => setNewTodo(e.target.value)}
+                  type='text'
+                  placeholder='Add task'
+                />
+                <button className='todos__form__btn'>+</button>
+              </form>
+            </div>
+            {
+              todos && todos.map(todo=>(
+                <Todo key={todo.uuid} task={todo.task} handleRemoveTodo={()=>handleRemoveTodo(todo.uuid)} />
+              ))
+            }
 
-      </div>
+          </div>
+        ) :
+        (
+          <div className="no-category">
+            Please start by creating a list
+          </div>
+        )
+      }
+      
     </Container>
   )
 }
