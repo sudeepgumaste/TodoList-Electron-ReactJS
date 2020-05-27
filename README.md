@@ -1,3 +1,4 @@
-# TODO list
+# Todo list
 
-Trying to build a good looking todo list. Will convert it to electron app
+Minimal Todo list with clean UI
+Built with ReactJS and electron
