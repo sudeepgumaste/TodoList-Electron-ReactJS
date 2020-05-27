@@ -1,23 +1,46 @@
 {
   "name": "todo-electron",
-  "version": "0.1.0",
+  "author": {
+    "name": "Sudeep Gumaste",
+    "email": "sudeepgumaste@protonmail.com",
+    "url": "https://sudeepgumaste.github.io"
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "version": "1.0.0",
   "private": true,
+  "description": "Minimal to do list application",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.0",
     "uuid": "^8.1.0"
   },
+  "build": {
+    "appId": "com.sudeep.todos-app",
+    "productName": "Todo List",
+    "copyright": "Copyright © 2020 Sudeep Gumaste",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
     "eject": "react-scripts eject",
-    "start:electron": "electron ./electron/main.js"
+    "start:electron": "electron ./electron/main.js",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "npm run build",
+    "electron-pack": "electron-builder build -w"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,7 +58,10 @@
     ]
   },
   "devDependencies": {
+    "@rescripts/cli": "0.0.14",
+    "@rescripts/rescript-env": "0.0.12",
     "electron": "^9.0.0",
+    "electron-builder": "^22.7.0",
     "electron-packager": "^14.2.1"
   }
 }
